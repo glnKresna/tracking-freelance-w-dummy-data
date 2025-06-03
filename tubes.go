@@ -65,15 +65,15 @@ func formatTanggal(input string) string {
 }
 
 // Fungsi input tanggal
-func inputTanggal(reader *bufio.Reader, prompt string) string {
+func inputTanggal(reader *bufio.Reader, inputTanggal string) string {
 	for {
-		fmt.Print(prompt)
+		fmt.Print(inputTanggal)
 		tanggal, _ := reader.ReadString('\n')
 		tanggal = strings.TrimSpace(tanggal)
 
-		formattedDate := formatTanggal(tanggal)
-		if formattedDate != "" {
-			return formattedDate
+		tanggalTerformat := formatTanggal(tanggal)
+		if tanggalTerformat != "" {
+			return tanggalTerformat
 		}
 		fmt.Println("Format tanggal tidak valid! Gunakan format DD MM YYYY")
 	}
@@ -247,8 +247,8 @@ func editProyek(proyekList *[]Proyek) {
 	input, _ = reader.ReadString('\n')
 	input = strings.TrimSpace(input)
 	if input != "" {
-		if formattedDate := formatTanggal(input); formattedDate != "" {
-			target.TanggalTerima = formattedDate
+		if tanggalTerformat := formatTanggal(input); tanggalTerformat != "" {
+			target.TanggalTerima = tanggalTerformat
 		} else {
 			fmt.Println("Format tanggal tidak valid! Tanggal tidak diubah.")
 		}
@@ -258,8 +258,8 @@ func editProyek(proyekList *[]Proyek) {
 	input, _ = reader.ReadString('\n')
 	input = strings.TrimSpace(input)
 	if input != "" {
-		if formattedDate := formatTanggal(input); formattedDate != "" {
-			target.Deadline = formattedDate
+		if tanggalTerformat := formatTanggal(input); tanggalTerformat != "" {
+			target.Deadline = tanggalTerformat
 		} else {
 			fmt.Println("Format tanggal tidak valid! Deadline tidak diubah.")
 		}
@@ -417,7 +417,7 @@ func cariProyek(proyekList []Proyek) {
 		fmt.Print("Masukkan nama proyek yang dicari: ")
 		searchInput, _ = reader.ReadString('\n')
 		searchInput = strings.TrimSpace(searchInput)
-		
+
 		proyekTerurut := make([]Proyek, len(proyekList))
 		copy(proyekTerurut, proyekList)
 		bubbleSortByJudul(&proyekTerurut)
@@ -493,7 +493,6 @@ func selectionSortByStatus(proyekList *[]Proyek) {
 		(*proyekList)[i], (*proyekList)[minIdx] = (*proyekList)[minIdx], (*proyekList)[i]
 	}
 }
-
 
 func initDummyData() []Proyek {
 	return []Proyek{
