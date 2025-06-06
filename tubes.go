@@ -325,37 +325,6 @@ func hapusProyek(proyekList *[]Proyek) {
 	}
 }
 
-// Fungsi seqsearch
-func seqSearch(proyekList []Proyek, id string) (Proyek, bool) {
-	for _, proyek := range proyekList {
-		if proyek.ID == id {
-			return proyek, true
-		}
-	}
-	return Proyek{}, false
-}
-
-// Fungsi binsearch
-func binSearch(proyekList []Proyek, id string) (Proyek, bool) {
-	kiri := 0
-	kanan := len(proyekList) - 1
-
-	for kiri <= kanan {
-		mid := (kiri + kanan) / 2
-		if proyekList[mid].ID == id {
-			return proyekList[mid], true
-		}
-
-		if proyekList[mid].ID < id {
-			kiri = mid + 1
-		} else {
-			kanan = mid - 1
-		}
-	}
-
-	return Proyek{}, false
-}
-
 func seqSearchByID(proyekList []Proyek, id string) (Proyek, bool) {
 	for _, proyek := range proyekList {
 		if proyek.ID == id {
